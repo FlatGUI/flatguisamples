@@ -6,8 +6,9 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns sliderdemo
-  (:require [flatgui.skins.flat]
-            [flatgui.samples.forms.sliderdemowindow :as sw]))
+(ns childgen
+  (:require [flatgui.base]
+            [flatgui.skins.flat]
+            [flatgui.samples.forms.cgwindow :as cgw]))
 
-(def sliderdemopanel (flatgui.base/defroot sw/root-panel))
+(def cgpanel (flatgui.base/defroot cgw/root-panel))
