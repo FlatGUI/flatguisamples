@@ -20,7 +20,7 @@
             [flatgui.samples.forms.colorchooserwin :as cc]
             [flatgui.samples.forms.orderticketwin :as ticket]
             [flatgui.samples.forms.blotterwin :as blotterwin]
-            [flatgui.testsuite]))
+            [flatgui.test]))
 
 (fg/defevolverfn main-theme-evolver :theme
   (if (get-property [:this :header-panel :dark] :pressed)

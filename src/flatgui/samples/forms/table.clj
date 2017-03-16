@@ -13,7 +13,7 @@
             [flatgui.util.matrix :as m]
             [flatgui.widgets.panel :as panel]
             [flatgui.samples.forms.tablewin :as tablewin]
-            [flatgui.testsuite]))
+            [flatgui.test]))
 
 (def tablepanel
   (fg/defcomponent panel/panel :app-panel
