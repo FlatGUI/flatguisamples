@@ -17,7 +17,7 @@
             [flatgui.paint :as fgp]))
 
 (def col-count 30)
-(def row-count 300)
+(def row-count 60)
 
 (def header-model-pos
   [(mapv identity (range 0 col-count))
@@ -29,23 +29,10 @@
 
 
 (fgp/deflookfn cell-look (:theme :id :text)
- [                                                          ;(fgp/call-look flatgui.skins.flat/component-look)
-  (awt/setColor (awt/color 200 50 0) ;(:prime-2 theme)
-                )
-  (awt/drawRect 0 0 w- h-)
-  (awt/drawRect 5 5 10 10)
+ [;(fgp/call-look flatgui.skins.flat/component-look)
   (awt/setColor (:prime-1 theme))
-  (awt/drawRoundRect 0 0 w- h- 0.125)
-  (awt/drawString text 0.375 0.375)
-  (awt/setColor (awt/color 255 0 0))
-  (awt/drawRect 7 7 12 12)
-  (awt/drawLine 0 0 w h)])
-
-(fgp/deflookfn test-look (:theme :id :text)
-               [(fgp/call-look flatgui.skins.flat/component-look)
-                (awt/setColor (awt/color 255 0 0))
-                (awt/drawLine 0 0 w h)])
-
+  (awt/drawRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
+  (awt/drawString text 0.375 0.375)])
 
 (fg/defevolverfn cell-text-evolver :text
   (let [mc (get-property [:this] :model-coord)]
@@ -58,25 +45,21 @@
                  :text "?"
                  :evolvers {:text cell-text-evolver}}))
 
-(fg/defevolverfn :clip-size (get-property [] :clip-size))
+;(fg/defevolverfn :clip-size (get-property [] :clip-size))
 
 (fg/defevolverfn scroll-cs-evolver :clip-size
   (let [ win-size (get-property [] :clip-size)]
     (m/defpoint (- (m/x win-size) 0.25) (- (m/y win-size) 0.625))))
 
-(def table-component
-  (fg/defcomponent table/table :table
-    {:header-model-pos header-model-pos
-     :header-model-size header-model-size
-     :cell-prototype democell
-     :position-matrix m/identity-matrix
-     :clip-size (m/defpoint 1 1)
-     :background (awt/color 32 16 8)
-     :look test-look
-     :evolvers {:clip-size clip-size-evolver}}))
-
-(fg/defevolverfn scroll-contentsize-evolver :content-size
-  (get-property [:this :table] :content-size))
+(fg/defwidget "demotable"
+  {:header-model-pos header-model-pos
+   :header-model-size header-model-size
+   :cell-prototype democell
+   :position-matrix m/identity-matrix
+   ;:clip-size (m/defpoint 1 1)
+   :background (awt/color 32 16 8)
+   :evolvers {:clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}} ;TODO bug: this evolver is not taken from scrollpanelcontent
+  scrollpanel/scrollpanelcontent table/table)
 
 (def table-window
   (fg/defcomponent window/window :table-window
@@ -88,5 +71,4 @@
       {:position-matrix (m/translation 0.125 0.5)
        :clip-size (m/defpoint 1 1)
        :evolvers {:clip-size scroll-cs-evolver}
-       :children {:content-pane (fg/defcomponent scrollpanel/scrollpanelcontent :content-pane {:evolvers {:content-size scroll-contentsize-evolver}
-                                                                                               :children {:table table-component}})}})))
+       :children {:content-pane (fg/defcomponent demotable :content-pane {})}})))
