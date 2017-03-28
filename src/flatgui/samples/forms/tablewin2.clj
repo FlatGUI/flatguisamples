@@ -15,6 +15,7 @@
             [flatgui.widgets.table2.cell :as cell]
             [flatgui.widgets.scrollpanel :as scrollpanel]
             [flatgui.widgets.checkbox :as checkbox]
+            [flatgui.widgets.abstractbutton :as abstractbutton]
             [flatgui.paint :as fgp]))
 
 (def col-count 30)
@@ -39,22 +40,32 @@
   (let [mc (get-property [:this] :model-coord)]
     (str (first mc) "-" (second mc))))
 
-(def cell-expand-checkbox
-  (fg/defcomponent checkbox/checkbox :exp
-    {:text "Exp"
-     :clip-size (m/defpoint 0.75 0.25)
-     :position-matrix (m/translation 0.125 0.25)}))
-
 (def cell-exp-h 3)
 (def cell-col-h 1)
 
+(fg/defevolverfn checkbox-pressed-evolver :pressed
+  (if (= [] (get-reason))
+    (let [as (get-property [] :atomic-state)]
+      (if (not= cell/not-in-use-coord (:model-coord as))
+        (> (m/y (get-property [] :clip-size)) cell-col-h)
+        old-pressed))
+    (abstractbutton/check-pressed-evolver component)))
+
+(def cell-expand-checkbox
+  (fg/defcomponent checkbox/checkbox :exp
+    {:clip-size (m/defpoint 0.75 0.25)
+     :position-matrix (m/translation 0.125 0.25)
+     :evolvers {:pressed checkbox-pressed-evolver}}))
+
 (fg/defevolverfn :atomic-state
   (let [as (cell/atomic-state-evolver component)]
-    (if (> (first (:screen-coord as)) 0)
-      as
+    (if (and
+          (= (first (:screen-coord as)) 0)
+          (= [:this :exp] (get-reason)))
       (if (get-property [:this :exp] :pressed)
         (assoc as :clip-size (m/defpoint (m/x (:clip-size as)) cell-exp-h))
-        (assoc as :clip-size (m/defpoint (m/x (:clip-size as)) cell-col-h))))))
+        (assoc as :clip-size (m/defpoint (m/x (:clip-size as)) cell-col-h)))
+      as)))
 
 (def democell
   (merge-with fg/properties-merger cell/cell
