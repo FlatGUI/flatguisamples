@@ -14,6 +14,7 @@
             [flatgui.widgets.table2.table :as table]
             [flatgui.widgets.table2.cell :as cell]
             [flatgui.widgets.scrollpanel :as scrollpanel]
+            [flatgui.widgets.checkbox :as checkbox]
             [flatgui.paint :as fgp]))
 
 (def col-count 30)
@@ -38,27 +39,45 @@
   (let [mc (get-property [:this] :model-coord)]
     (str (first mc) "-" (second mc))))
 
+(def cell-expand-checkbox
+  (fg/defcomponent checkbox/checkbox :exp
+    {:text "Exp"
+     :clip-size (m/defpoint 0.75 0.25)
+     :position-matrix (m/translation 0.125 0.25)}))
+
+(def cell-exp-h 3)
+(def cell-col-h 1)
+
+(fg/defevolverfn :atomic-state
+  (let [as (cell/atomic-state-evolver component)]
+    (if (> (first (:screen-coord as)) 0)
+      as
+      (if (get-property [:this :exp] :pressed)
+        (assoc as :clip-size (m/defpoint (m/x (:clip-size as)) cell-exp-h))
+        (assoc as :clip-size (m/defpoint (m/x (:clip-size as)) cell-col-h))))))
+
 (def democell
-  (merge-with fg/properties-merger  cell/cell
+  (merge-with fg/properties-merger cell/cell
                 {:skin-key false
                  :look cell-look
                  :text "?"
-                 :evolvers {:text cell-text-evolver}}))
-
-;(fg/defevolverfn :clip-size (get-property [] :clip-size))
+                 :children {:exp cell-expand-checkbox}
+                 :evolvers {:text cell-text-evolver
+                            :atomic-state atomic-state-evolver}}))
 
 (fg/defevolverfn scroll-cs-evolver :clip-size
   (let [ win-size (get-property [] :clip-size)]
     (m/defpoint (- (m/x win-size) 0.25) (- (m/y win-size) 0.625))))
 
 (fg/defwidget "demotable"
-  {:header-model-pos header-model-pos
-   :header-model-size header-model-size
+  {:header-model-loc {:positions header-model-pos
+                      :sizes header-model-size}
    :cell-prototype democell
    :position-matrix m/identity-matrix
    ;:clip-size (m/defpoint 1 1)
    :background (awt/color 32 16 8)
-   :evolvers {:clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}} ;TODO bug: this evolver is not taken from scrollpanelcontent
+   :evolvers {:header-model-loc table/shift-header-model-loc-evolver
+              :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}} ;TODO bug: this evolver is not taken from scrollpanelcontent
   scrollpanel/scrollpanelcontent table/table)
 
 (def table-window
