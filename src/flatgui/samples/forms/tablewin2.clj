@@ -46,8 +46,8 @@
 (fg/defevolverfn checkbox-pressed-evolver :pressed
   (if (= [] (get-reason))
     (let [as (get-property [] :atomic-state)]
-      (if (not= cell/not-in-use-coord (:model-coord as))
-        (> (m/y (get-property [] :clip-size)) cell-col-h)
+      (if (= (first (:screen-coord as)) 0);(not= cell/not-in-use-coord (:model-coord as))
+        (> (m/y (:clip-size as)) cell-col-h)
         old-pressed))
     (abstractbutton/check-pressed-evolver component)))
 
