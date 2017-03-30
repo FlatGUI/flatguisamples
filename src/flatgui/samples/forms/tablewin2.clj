@@ -74,7 +74,13 @@
                  :text "?"
                  :children {:exp cell-expand-checkbox}
                  :evolvers {:text cell-text-evolver
-                            :atomic-state atomic-state-evolver}}))
+                            :atomic-state atomic-state-evolver
+                            ;; Strip some unneeded features
+                            :look nil
+                            :coord-map nil
+                            :accepts-focus? nil
+                            :has-mouse nil
+                            :enabled nil}}))
 
 (fg/defevolverfn scroll-cs-evolver :clip-size
   (let [ win-size (get-property [] :clip-size)]
@@ -85,7 +91,6 @@
                       :sizes header-model-size}
    :cell-prototype democell
    :position-matrix m/identity-matrix
-   ;:clip-size (m/defpoint 1 1)
    :background (awt/color 32 16 8)
    :evolvers {:header-model-loc table/shift-header-model-loc-evolver
               :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}} ;TODO bug: this evolver is not taken from scrollpanelcontent
