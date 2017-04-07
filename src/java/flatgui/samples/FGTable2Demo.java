@@ -10,7 +10,6 @@
 
 package flatgui.samples;
 
-import flatgui.core.IFGEvolveConsumer;
 import flatgui.core.engine.ui.FGAWTAppContainer;
 
 import javax.imageio.ImageIO;
@@ -18,8 +17,6 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
-import java.util.*;
-import java.util.List;
 
 /**
  * @author Denis Lebedev
@@ -28,7 +25,6 @@ public class FGTable2Demo
 {
     public static final String CONTAINER_NS = "table2";
     public static final String CONTAINER_VAR_NAME = "tablepanel2";
-    private static final int PORT = 13100;
 
     public static void main(String[] args) throws Exception
     {

@@ -93,7 +93,7 @@
    :position-matrix m/identity-matrix
    :background (awt/color 32 16 8)
    :evolvers {:header-model-loc table/shift-header-model-loc-evolver
-              :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}} ;TODO bug: this evolver is not taken from scrollpanelcontent
+              :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}}
   scrollpanel/scrollpanelcontent table/table)
 
 (def table-window
