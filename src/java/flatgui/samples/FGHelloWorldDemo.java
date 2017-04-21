@@ -15,14 +15,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.InputStream;
 
 /**
  * @author Denis Lebedev
  */
 public class FGHelloWorldDemo
 {
-    public static final String RESOURCE = "flatgui/samples/forms/helloworld.clj";
     public static final String CONTAINER_NS = "flatgui.samples.forms.helloworld";
     public static final String CONTAINER_VAR_NAME = "root-panel";
 
@@ -31,7 +29,7 @@ public class FGHelloWorldDemo
         EventQueue.invokeLater(() -> {
             try
             {
-                Image logoIcon = null;//ImageIO.read(ClassLoader.getSystemResource("flatgui/samples/images/icon_FlatGUI_32x32.png"));
+                Image logoIcon = ImageIO.read(ClassLoader.getSystemResource("flatgui/samples/images/icon_FlatGUI_32x32.png"));
 
                 Frame frame = new Frame("FlatGUI Demo - Hello world");
                 frame.setSize(600, 400);
@@ -42,8 +40,7 @@ public class FGHelloWorldDemo
                     frame.setIconImage(logoIcon);
                 }
 
-                InputStream is = FGCompoundDemoServer.class.getClassLoader().getResourceAsStream(RESOURCE);
-                FGAWTAppContainer appContainer = FGAWTAppContainer.loadSourceCreateAndInit(is, CONTAINER_NS, CONTAINER_VAR_NAME);
+                FGAWTAppContainer appContainer = FGAWTAppContainer.createAndInit(CONTAINER_NS, CONTAINER_VAR_NAME);
                 Component awtComponent = appContainer.getComponent();
 
                 frame.add(awtComponent, BorderLayout.CENTER);

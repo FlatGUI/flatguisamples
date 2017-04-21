@@ -19,6 +19,7 @@
                  [org.flatgui/flatguithemes ~flatgui-version]
                  [org.flatgui/flatguiskins ~flatgui-version]
                  [org.flatgui/flatguiwidgets ~flatgui-version]]
+  :resource-paths ["resources"]
   :java-source-paths ["src/java"]
   :omit-source true
   :aot :all)
