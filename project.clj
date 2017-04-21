@@ -9,7 +9,7 @@
 ;breaks IDE (load-string (slurp "../projectcommon.clj"))
 (def flatgui-version "0.2.0-SNAPSHOT")
 
-(defproject flatguisamples flatgui-version
+(defproject org.flatgui/flatguisamples flatgui-version
   :description "FlatGUI Samples"
   :url "http://flatgui.org"
   :license {:name "Eclipse Public License"

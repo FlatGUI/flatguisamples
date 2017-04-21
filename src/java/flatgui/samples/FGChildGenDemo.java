@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class FGChildGenDemo
 {
-    public static final String CONTAINER_NS = "childgen";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.childgen";
     public static final String CONTAINER_VAR_NAME = "cgpanel";
 
     public static void main(String[] args)

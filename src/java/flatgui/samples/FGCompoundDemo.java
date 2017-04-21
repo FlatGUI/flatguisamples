@@ -23,7 +23,7 @@ import java.io.InputStream;
  */
 public class FGCompoundDemo
 {
-    public static final String CONTAINER_NS = "compound";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.compound";
     public static final String CONTAINER_VAR_NAME = "compoundpanel";
 
     public static void main(String[] args)

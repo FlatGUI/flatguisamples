@@ -24,7 +24,7 @@ import flatgui.core.engine.ui.FGAWTAppContainer;
  */
 public class FGMultilineTextDemo
 {
-    public static final String CONTAINER_NS = "text";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.text";
     public static final String CONTAINER_VAR_NAME = "textpanel";
 
     public static void main(String[] args)

@@ -22,7 +22,7 @@ import flatgui.core.websocket.FGAppServer;
  */
 public class FGMultilineTextDemoServer
 {
-    public static final String CONTAINER_NS = "text";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.text";
     public static final String CONTAINER_VAR_NAME = "textpanel";
     private static final int PORT = 13100;
 

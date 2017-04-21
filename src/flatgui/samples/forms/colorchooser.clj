@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns colorchooser
+(ns flatgui.samples.forms.colorchooser
   (:require [flatgui.skins.flat]
             [flatgui.usagestats]
             [flatgui.samples.forms.colorchooserwin :as cc])

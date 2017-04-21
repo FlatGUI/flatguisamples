@@ -9,30 +9,21 @@
  */
 package flatgui.samples;
 
-import clojure.lang.Keyword;
-import clojure.lang.Symbol;
-import clojure.lang.Var;
-import flatgui.core.*;
-import flatgui.core.awt.FGAWTContainerHost;
-import flatgui.core.awt.HostComponent;
 import flatgui.core.engine.ui.FGAWTAppContainer;
-import flatgui.core.engine.ui.FGAppContainer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
-import java.io.StringReader;
-import java.util.*;
-import java.util.List;
 
 /**
  * @author Denis Lebedev
  */
 public class FGHelloWorldDemo
 {
-    public static final String CONTAINER_NS = "helloworld2";
+    public static final String RESOURCE = "flatgui/samples/forms/helloworld.clj";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.helloworld";
     public static final String CONTAINER_VAR_NAME = "hellopanel";
 
     public static void main(String[] args)
@@ -51,7 +42,7 @@ public class FGHelloWorldDemo
                     frame.setIconImage(logoIcon);
                 }
 
-                InputStream is = FGCompoundDemoServer.class.getClassLoader().getResourceAsStream("flatgui/samples/forms/helloworld2.clj");
+                InputStream is = FGCompoundDemoServer.class.getClassLoader().getResourceAsStream(RESOURCE);
                 FGAWTAppContainer appContainer = FGAWTAppContainer.loadSourceCreateAndInit(is, CONTAINER_NS, CONTAINER_VAR_NAME);
                 Component awtComponent = appContainer.getComponent();
 

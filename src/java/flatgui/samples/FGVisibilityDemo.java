@@ -22,7 +22,7 @@ import java.io.InputStream;
  */
 public class FGVisibilityDemo
 {
-    public static final String CONTAINER_NS = "visibility";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.visibility";
     public static final String CONTAINER_VAR_NAME = "vispanel";
 
     public static void main(String[] args)

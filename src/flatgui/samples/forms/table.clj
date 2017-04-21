@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns table
+(ns flatgui.samples.forms.table
   (:require [flatgui.skins.flat]
             [flatgui.base :as fg]
             [flatgui.awt :as awt]

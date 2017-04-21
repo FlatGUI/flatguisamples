@@ -28,7 +28,7 @@ import flatgui.core.websocket.FGAppServer;
  */
 public class FGColorChooserDemoServer
 {
-    private static final String CONTAINER_NS = "colorchooser";
+    private static final String CONTAINER_NS = "flatgui.samples.forms.colorchooser";
     private static final String CONTAINER_VAR_NAME = "colorpanel";
     private static final String STATS_REPORTER_VR_NAME = "usage-stats-reporter";
     private static final int PORT = 13100;

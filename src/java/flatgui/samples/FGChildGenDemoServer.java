@@ -22,7 +22,7 @@ import java.util.Scanner;
  */
 public class FGChildGenDemoServer
 {
-    public static final String CONTAINER_NS = "childgen";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.childgen";
     public static final String CONTAINER_VAR_NAME = "cgpanel";
     private static final int PORT = 13100;
 

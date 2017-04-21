@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns sliderdemo
+(ns flatgui.samples.forms.sliderdemo
   (:require [flatgui.skins.flat]
             [flatgui.samples.forms.sliderdemowindow :as sw]))
 

@@ -22,7 +22,7 @@ import java.util.Scanner;
  */
 public class FGTable2DemoServer
 {
-    public static final String CONTAINER_NS = "table2";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.table2";
     public static final String CONTAINER_VAR_NAME = "tablepanel2";
     private static final int PORT = 13100;
 

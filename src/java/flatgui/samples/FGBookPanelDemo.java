@@ -22,7 +22,7 @@ import java.io.InputStream;
  */
 public class FGBookPanelDemo
 {
-    public static final String CONTAINER_NS = "bookpanelmain";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.bookpanelmain";
     public static final String CONTAINER_VAR_NAME = "bookpanel";
 
     public static void main(String[] args)

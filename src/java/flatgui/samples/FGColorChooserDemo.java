@@ -23,7 +23,7 @@ import java.io.InputStream;
  */
 public class FGColorChooserDemo
 {
-    public static final String CONTAINER_NS = "colorchooser";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.colorchooser";
     public static final String CONTAINER_VAR_NAME = "colorpanel";
 
     public static void main(String[] args)

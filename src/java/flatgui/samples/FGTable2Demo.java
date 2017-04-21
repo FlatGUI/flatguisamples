@@ -23,7 +23,7 @@ import java.io.InputStream;
  */
 public class FGTable2Demo
 {
-    public static final String CONTAINER_NS = "table2";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.table2";
     public static final String CONTAINER_VAR_NAME = "tablepanel2";
 
     public static void main(String[] args) throws Exception

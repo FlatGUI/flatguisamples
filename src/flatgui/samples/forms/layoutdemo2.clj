@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns layoutdemo2
+(ns flatgui.samples.forms.layoutdemo2
   (:require [flatgui.skins.flat]
             [flatgui.samples.forms.layoutdemopanel2 :as lp]))
 
