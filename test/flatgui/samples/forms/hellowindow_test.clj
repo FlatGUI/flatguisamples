@@ -8,15 +8,12 @@
 
 (ns flatgui.samples.forms.hellowindow-test
   (:require [flatgui.samples.forms.hellowindow :as hw]
+            [flatgui.samples.forms.helloworld]
             [flatgui.test :as fgt]
-            [clojure.test :as test])
-  (:import (flatgui.samples FGHelloWorldDemo)))
+            [clojure.test :as test]))
 
 (test/deftest scenario
-  (let [container (fgt/create-container
-                    FGHelloWorldDemo/RESOURCE
-                    FGHelloWorldDemo/CONTAINER_NS
-                    FGHelloWorldDemo/CONTAINER_VAR_NAME)]
+  (let [container (fgt/create-container #'flatgui.samples.forms.helloworld/root-panel)]
     ;;
     ;; Test initial state
     ;;

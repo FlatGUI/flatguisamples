@@ -8,6 +8,50 @@
 
 (ns flatgui.samples.forms.helloworld
   (:require [flatgui.skins.flat]
-            [flatgui.samples.forms.hellowindow :as hw]))
+            [flatgui.base :as fg]
+            [flatgui.util.matrix :as m]
+            [flatgui.awt :as awt]
+            [flatgui.widgets.window :as window]
+            [flatgui.widgets.checkbox :as checkbox]
+            [flatgui.widgets.label :as label]
+            [flatgui.widgets.panel :as panel]))
 
-(def hellopanel (flatgui.base/defroot hw/root-panel))
+(def nogreeting-text "Not now")
+
+(def greeting-text "Hello, world!")
+
+(fg/defevolverfn greeting-evolver :text
+  (if (get-property [:say-hello] :pressed)
+    greeting-text
+    nogreeting-text))
+
+(def hello-window
+  (fg/defcomponent
+    window/window
+    :hello
+    {:clip-size (m/defpoint 3 1.5)
+     :position-matrix (m/translation 1 1)
+     :text "Hello World Example"}
+
+    (fg/defcomponent
+      checkbox/checkbox
+      :say-hello
+      {:clip-size (m/defpoint 1.75 0.25)
+       :text "Greeting"
+       :position-matrix (m/translation 0.125 0.75)})
+
+    (fg/defcomponent
+      label/label
+      :greeting
+      {:text nogreeting-text
+       :clip-size (m/defpoint 2.25 0.25)
+       :position-matrix (m/translation 1.0 0.75)
+       :evolvers {:text greeting-evolver}})))
+
+(def root-panel
+  (fg/defcomponent
+    panel/panel
+    :main
+    {:clip-size  (m/defpoint 4 2)
+     :background (awt/color 9 17 26)}
+    hello-window))

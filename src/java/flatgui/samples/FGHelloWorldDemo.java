@@ -24,14 +24,14 @@ public class FGHelloWorldDemo
 {
     public static final String RESOURCE = "flatgui/samples/forms/helloworld.clj";
     public static final String CONTAINER_NS = "flatgui.samples.forms.helloworld";
-    public static final String CONTAINER_VAR_NAME = "hellopanel";
+    public static final String CONTAINER_VAR_NAME = "root-panel";
 
     public static void main(String[] args)
     {
         EventQueue.invokeLater(() -> {
             try
             {
-                Image logoIcon = ImageIO.read(ClassLoader.getSystemResource("flatgui/samples/images/icon_FlatGUI_32x32.png"));
+                Image logoIcon = null;//ImageIO.read(ClassLoader.getSystemResource("flatgui/samples/images/icon_FlatGUI_32x32.png"));
 
                 Frame frame = new Frame("FlatGUI Demo - Hello world");
                 frame.setSize(600, 400);
