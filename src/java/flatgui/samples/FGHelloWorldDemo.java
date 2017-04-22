@@ -9,12 +9,10 @@
  */
 package flatgui.samples;
 
-import flatgui.core.engine.ui.FGAWTAppContainer;
+import flatgui.run.FGDesktopRunner;
+import flatgui.run.FGRunUtil;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 /**
  * @author Denis Lebedev
@@ -23,44 +21,12 @@ public class FGHelloWorldDemo
 {
     public static final String CONTAINER_NS = "flatgui.samples.forms.helloworld";
     public static final String CONTAINER_VAR_NAME = "root-panel";
+    public static final String ICON_RESOURCE = "flatgui/samples/images/icon_FlatGUI_32x32.png";
+    public static final String TITLE = "FlatGUI Demo - Hello world";
 
     public static void main(String[] args)
     {
-        EventQueue.invokeLater(() -> {
-            try
-            {
-                Image logoIcon = ImageIO.read(ClassLoader.getSystemResource("flatgui/samples/images/icon_FlatGUI_32x32.png"));
-
-                Frame frame = new Frame("FlatGUI Demo - Hello world");
-                frame.setSize(600, 400);
-                frame.setLocation(10, 10);
-                frame.setLayout(new BorderLayout());
-                if (logoIcon != null)
-                {
-                    frame.setIconImage(logoIcon);
-                }
-
-                FGAWTAppContainer appContainer = FGAWTAppContainer.createAndInit(CONTAINER_NS, CONTAINER_VAR_NAME);
-                Component awtComponent = appContainer.getComponent();
-
-                frame.add(awtComponent, BorderLayout.CENTER);
-                frame.addWindowListener(new WindowAdapter()
-                {
-                    public void windowClosing(WindowEvent we)
-                    {
-                        appContainer.unInitialize();
-                        System.exit(0);
-                    }
-                });
-                frame.setVisible(true);
-                awtComponent.requestFocusInWindow();
-
-                awtComponent.repaint();
-            }
-            catch(Exception ex)
-            {
-                ex.printStackTrace();
-            }
-        });
+        Image logoIcon = FGRunUtil.loadIconFromClasspath(ICON_RESOURCE, e -> e.printStackTrace());
+        FGDesktopRunner.runDesktop(CONTAINER_NS, CONTAINER_VAR_NAME, TITLE, logoIcon, e -> e.printStackTrace());
     }
 }
