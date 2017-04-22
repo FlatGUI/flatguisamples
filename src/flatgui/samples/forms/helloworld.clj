@@ -11,6 +11,7 @@
             [flatgui.base :as fg]
             [flatgui.util.matrix :as m]
             [flatgui.awt :as awt]
+            [flatgui.widgets.component :as component]
             [flatgui.widgets.window :as window]
             [flatgui.widgets.checkbox :as checkbox]
             [flatgui.widgets.label :as label]
@@ -57,5 +58,6 @@
     panel/panel
     :main
     {:clip-size  (m/defpoint 6 4)
-     :background (awt/color 9 17 26)}
+     :background (awt/color 9 17 26)
+     :evolvers {:clip-size component/clip-size-to-host}}
     hello-window))
