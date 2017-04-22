@@ -17,8 +17,12 @@
             [flatgui.widgets.panel :as panel]))
 
 (def nogreeting-text "Not now")
-
 (def greeting-text "Hello, world!")
+
+(def win-x 1)
+(def win-y 1)
+(def chk-x 0.125)
+(def chk-y 0.75)
 
 (fg/defevolverfn greeting-evolver :text
   (if (get-property [:say-hello] :pressed)
@@ -30,7 +34,7 @@
     window/window
     :hello
     {:clip-size (m/defpoint 3 1.5)
-     :position-matrix (m/translation 1 1)
+     :position-matrix (m/translation win-x win-y)
      :text "Hello World Example"}
 
     (fg/defcomponent
@@ -38,7 +42,7 @@
       :say-hello
       {:clip-size (m/defpoint 1.75 0.25)
        :text "Greeting"
-       :position-matrix (m/translation 0.125 0.75)})
+       :position-matrix (m/translation chk-x chk-y)})
 
     (fg/defcomponent
       label/label
@@ -52,6 +56,6 @@
   (fg/defcomponent
     panel/panel
     :main
-    {:clip-size  (m/defpoint 4 2)
+    {:clip-size  (m/defpoint 6 4)
      :background (awt/color 9 17 26)}
     hello-window))

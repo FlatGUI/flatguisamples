@@ -7,8 +7,7 @@
 ; You must not remove this notice, or any other, from this software.
 
 (ns flatgui.samples.forms.hellowindow-test
-  (:require [flatgui.samples.forms.hellowindow :as hw]
-            [flatgui.samples.forms.helloworld]
+  (:require [flatgui.samples.forms.helloworld :as hw]
             [flatgui.test :as fgt]
             [clojure.test :as test]))
 
@@ -27,7 +26,7 @@
     ;;
     (fgt/check-property container [:main :hello :greeting] :text hw/greeting-text)
     ;;
-    ;; Click and check once again
+    ;; Click and check once again, this time using screen coords instead of specifying a known target
     ;;
-    (fgt/left-click container [:main :hello :say-hello])
+    (fgt/left-click container (+ hw/win-x hw/chk-x) (+ hw/win-y hw/chk-y))
     (fgt/check-property container [:main :hello :greeting] :text hw/nogreeting-text)))
