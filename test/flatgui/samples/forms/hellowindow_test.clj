@@ -11,6 +11,8 @@
             [flatgui.test :as fgt]
             [clojure.test :as test]))
 
+(fgt/enable-traces-for-failed-tests)
+
 (test/deftest scenario
   (let [container (fgt/create-container #'flatgui.samples.forms.helloworld/root-panel)]
     ;;
