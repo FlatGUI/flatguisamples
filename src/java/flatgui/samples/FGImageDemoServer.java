@@ -23,7 +23,7 @@ import flatgui.core.engine.remote.FGLegacyGlueTemplate;
  */
 public class FGImageDemoServer
 {
-    public static final String CONTAINER_NS = "image";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.image";
     public static final String CONTAINER_VAR_NAME = "imagepanelweb";
     private static final int PORT = 13100;
 

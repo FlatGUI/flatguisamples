@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns image
+(ns flatgui.samples.forms.image
   (:require [flatgui.base]
             [flatgui.skins.flat]
             [flatgui.samples.forms.imagewindow :as iw]))

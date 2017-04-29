@@ -9,7 +9,7 @@
 ;breaks IDE (load-string (slurp "../projectcommon.clj"))
 (def flatgui-version "0.2.0-SNAPSHOT")
 
-(defproject flatguisamples flatgui-version
+(defproject org.flatgui/flatguisamples flatgui-version
   :description "FlatGUI Samples"
   :url "http://flatgui.org"
   :license {:name "Eclipse Public License"
@@ -19,6 +19,7 @@
                  [org.flatgui/flatguithemes ~flatgui-version]
                  [org.flatgui/flatguiskins ~flatgui-version]
                  [org.flatgui/flatguiwidgets ~flatgui-version]]
+  :resource-paths ["resources"]
   :java-source-paths ["src/java"]
   :omit-source true
   :aot :all)

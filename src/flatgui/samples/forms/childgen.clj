@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(ns childgen
+(ns flatgui.samples.forms.childgen
   (:require [flatgui.base]
             [flatgui.skins.flat]
             [flatgui.samples.forms.cgwindow :as cgw]))

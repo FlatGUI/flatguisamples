@@ -23,7 +23,7 @@ import java.io.InputStream;
  */
 public class FGSliderDemo
 {
-    public static final String CONTAINER_NS = "sliderdemo";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.sliderdemo";
     public static final String CONTAINER_VAR_NAME = "sliderdemopanel";
 
     public static void main(String[] args)

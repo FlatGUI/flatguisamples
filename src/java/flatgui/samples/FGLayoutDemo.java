@@ -25,7 +25,7 @@ import flatgui.core.engine.ui.FGAWTAppContainer;
  */
 public class FGLayoutDemo
 {
-    public static final String CONTAINER_NS = "layoutdemo";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.layoutdemo";
     public static final String CONTAINER_VAR_NAME = "layoutpanel";
 
     public static void main(String[] args)

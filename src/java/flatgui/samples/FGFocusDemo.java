@@ -23,7 +23,7 @@ import java.io.InputStream;
  */
 public class FGFocusDemo
 {
-    public static final String CONTAINER_NS = "fdemo";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.fdemo";
     public static final String CONTAINER_VAR_NAME = "fdemopanel";
 
     public static void main(String[] args)

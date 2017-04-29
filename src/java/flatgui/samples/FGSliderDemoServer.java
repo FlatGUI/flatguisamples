@@ -23,7 +23,7 @@ import java.util.Scanner;
  */
 public class FGSliderDemoServer
 {
-    public static final String CONTAINER_NS = "sliderdemo";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.sliderdemo";
     public static final String CONTAINER_VAR_NAME = "sliderdemopanel";
     private static final int PORT = 13100;
 

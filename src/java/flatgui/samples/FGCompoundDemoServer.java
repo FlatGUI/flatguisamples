@@ -23,15 +23,15 @@ import java.util.Scanner;
  */
 public class FGCompoundDemoServer
 {
-    public static final String CONTAINER_NS = "compound";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.compound";
     public static final String CONTAINER_VAR_NAME = "compoundpanel";
     private static final int PORT = 13100;
 
-    private static final String FOCUS_CONTAINER_NS = "fdemo";
+    private static final String FOCUS_CONTAINER_NS = "flatgui.samples.forms.fdemo";
     private static final String FOCUS_CONTAINER_VAR_NAME = "fdemopanel";
     private static final String FOCUS_MAPPING = "focus_sample";
 
-    private static final String LAYOUT_CONTAINER_NS = "layoutdemo2";
+    private static final String LAYOUT_CONTAINER_NS = "flatgui.samples.forms.layoutdemo2";
     private static final String LAYOUT_CONTAINER_VAR_NAME = "layoutpanel";
     private static final String LAYOUT_MAPPING = "layout_sample";
 

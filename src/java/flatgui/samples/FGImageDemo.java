@@ -29,7 +29,7 @@ import java.util.*;
  */
 public class FGImageDemo
 {
-    public static final String CONTAINER_NS = "image";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.image";
     public static final String CONTAINER_VAR_NAME = "imagepanel";
 
     public static void main(String[] args)

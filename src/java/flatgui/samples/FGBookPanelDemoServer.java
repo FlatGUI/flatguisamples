@@ -23,7 +23,7 @@ import java.util.Scanner;
  */
 public class FGBookPanelDemoServer
 {
-    private static final String CONTAINER_NS = "bookpanelmain";
+    private static final String CONTAINER_NS = "flatgui.samples.forms.bookpanelmain";
     private static final String CONTAINER_VAR_NAME = "bookpanel";
     private static final int PORT = 13100;
 

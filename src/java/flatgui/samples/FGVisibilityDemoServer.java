@@ -22,7 +22,7 @@ import java.util.Scanner;
  */
 public class FGVisibilityDemoServer
 {
-    public static final String CONTAINER_NS = "visibility";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.visibility";
     public static final String CONTAINER_VAR_NAME = "vispanel";
     private static final int PORT = 13100;
 

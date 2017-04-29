@@ -23,7 +23,7 @@ import flatgui.core.websocket.FGAppServer;
  */
 public class FGLayoutDemo2Server
 {
-    public static final String CONTAINER_NS = "layoutdemo2";
+    public static final String CONTAINER_NS = "flatgui.samples.forms.layoutdemo2";
     public static final String CONTAINER_VAR_NAME = "layoutpanel";
     private static final int PORT = 13100;
 
