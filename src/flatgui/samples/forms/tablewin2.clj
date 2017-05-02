@@ -105,7 +105,9 @@
    :background (awt/color 32 16 8)
    :evolvers {:header-model-loc table/shift-header-model-loc-evolver
               :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver
-              :selection table/selection-evolver}}
+              ;:selection table/direct-selection
+              :selection table/cbc-selection
+              }}
   scrollpanel/scrollpanelcontent table/table)
 
 (def table-window
