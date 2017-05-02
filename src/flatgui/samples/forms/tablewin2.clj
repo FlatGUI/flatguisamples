@@ -30,8 +30,10 @@
    (mapv (fn [_] 1) (range 0 row-count))])
 
 
-(fgp/deflookfn cell-look (:theme :id :text)
+(fgp/deflookfn cell-look (:theme :id :text :background)
  [;(fgp/call-look flatgui.skins.flat/component-look)
+  (awt/setColor background)
+  (awt/fillRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
   (awt/setColor (:prime-1 theme))
   (awt/drawRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
   (awt/drawString text 0.375 0.375)])
@@ -67,6 +69,13 @@
         (assoc as :clip-size (m/defpoint (m/x (:clip-size as)) cell-col-h)))
       as)))
 
+(def regular-color (awt/color 8 16 32))
+(def selected-color (awt/color 8 64 96))
+(fg/defevolverfn :background
+  (if (:selected (get-property [:this] :atomic-state))
+    selected-color
+    regular-color))
+
 (def democell
   (merge-with fg/properties-merger cell/cell
                 {:skin-key false
@@ -75,6 +84,7 @@
                  :children {:exp cell-expand-checkbox}
                  :evolvers {:text cell-text-evolver
                             :atomic-state atomic-state-evolver
+                            :background background-evolver
                             ;; Strip some unneeded features
                             :look nil
                             :coord-map nil
@@ -89,11 +99,13 @@
 (fg/defwidget "demotable"
   {:header-model-loc {:positions header-model-pos
                       :sizes header-model-size}
+   :selection [nil nil]
    :cell-prototype democell
    :position-matrix m/identity-matrix
    :background (awt/color 32 16 8)
    :evolvers {:header-model-loc table/shift-header-model-loc-evolver
-              :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver}}
+              :clip-size scrollpanel/scrollpanelcontent-clip-size-evolver
+              :selection table/selection-evolver}}
   scrollpanel/scrollpanelcontent table/table)
 
 (def table-window
