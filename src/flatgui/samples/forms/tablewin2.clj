@@ -18,7 +18,7 @@
             [flatgui.widgets.abstractbutton :as abstractbutton]
             [flatgui.paint :as fgp]))
 
-(def col-count 30)
+(def col-count 10)
 (def row-count 60)
 
 (def header-model-pos
@@ -30,13 +30,24 @@
    (mapv (fn [_] 1) (range 0 row-count))])
 
 
-(fgp/deflookfn cell-look (:theme :id :text :background)
+(fgp/deflookfn cell-look1 (:theme :id :text :background :widget-type)
  [;(fgp/call-look flatgui.skins.flat/component-look)
   (awt/setColor background)
   (awt/fillRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
   (awt/setColor (:prime-1 theme))
   (awt/drawRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
-  (awt/drawString text 0.375 0.375)])
+  (awt/drawString text 0.375 0.375)
+  (awt/drawString widget-type 0.0 0.625)])
+
+(fgp/deflookfn cell-look2 (:theme :id :text :background :widget-type)
+ [;(fgp/call-look flatgui.skins.flat/component-look)
+  (awt/setColor background)
+  (awt/fillRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
+  (awt/setColor (:prime-1 theme))
+  (awt/drawRoundRect (awt/+px 0 2) (awt/+px 0 2) (awt/-px w- 4) (awt/-px h- 4) 0.125)
+  (awt/drawString text 0.375 0.375)
+  (awt/drawString widget-type 0.0 0.625)])
+
 
 (fg/defevolverfn cell-text-evolver :text
   (let [mc (get-property [:this] :model-coord)]
@@ -76,11 +87,12 @@
     selected-color
     regular-color))
 
-(def democell
+(def democell1
   (merge-with fg/properties-merger cell/cell
                 {:skin-key false
-                 :look cell-look
+                 :look cell-look1
                  :text "?"
+                 :widget-type "democell1"
                  :children {:exp cell-expand-checkbox}
                  :evolvers {:text cell-text-evolver
                             :atomic-state atomic-state-evolver
@@ -92,6 +104,22 @@
                             :has-mouse nil
                             :enabled nil}}))
 
+(def democell2
+  (merge-with fg/properties-merger cell/cell
+              {:skin-key false
+               :look cell-look2
+               :text "x"
+               :widget-type "democell2"
+               :evolvers {:text cell-text-evolver
+                          :atomic-state atomic-state-evolver
+                          :background background-evolver
+                          ;; Strip some unneeded features
+                          :look nil
+                          :coord-map nil
+                          :accepts-focus? nil
+                          :has-mouse nil
+                          :enabled nil}}))
+
 (fg/defevolverfn scroll-cs-evolver :clip-size
   (let [ win-size (get-property [] :clip-size)]
     (m/defpoint (- (m/x win-size) 0.25) (- (m/y win-size) 0.625))))
@@ -100,7 +128,9 @@
   {:header-model-loc {:positions header-model-pos
                       :sizes header-model-size}
    :selection [nil nil]
-   :cell-prototype democell
+                                  ;; 0       1   2   3   4   5   6   7   8   9
+   :model-column->cell-prototype [democell1 nil nil nil nil nil nil nil nil nil]
+   :cell-prototype democell2
    :position-matrix m/identity-matrix
    :background (awt/color 32 16 8)
    :evolvers {:header-model-loc table/shift-header-model-loc-evolver
