@@ -18,7 +18,7 @@
             [flatgui.widgets.abstractbutton :as abstractbutton]
             [flatgui.paint :as fgp]))
 
-(def col-count 10)
+(def col-count 30)
 (def row-count 60)
 
 (def header-model-pos
@@ -28,7 +28,6 @@
 (def header-model-size
   [(mapv (fn [_] 1) (range 0 col-count))
    (mapv (fn [_] 1) (range 0 row-count))])
-
 
 (fgp/deflookfn cell-look1 (:theme :id :text :background :widget-type)
  [;(fgp/call-look flatgui.skins.flat/component-look)
@@ -100,7 +99,6 @@
                             ;; Strip some unneeded features
                             :look nil
                             :coord-map nil
-                            :accepts-focus? nil
                             :has-mouse nil
                             :enabled nil}}))
 
@@ -116,7 +114,6 @@
                           ;; Strip some unneeded features
                           :look nil
                           :coord-map nil
-                          :accepts-focus? nil
                           :has-mouse nil
                           :enabled nil}}))
 
@@ -124,12 +121,15 @@
   (let [ win-size (get-property [] :clip-size)]
     (m/defpoint (- (m/x win-size) 0.25) (- (m/y win-size) 0.625))))
 
+(def cell-prototypes
+  (let [v (mapv (fn [_] nil) (range 0 col-count))]
+    (assoc v 0 democell1)))
+
 (fg/defwidget "demotable"
   {:header-model-loc {:positions header-model-pos
                       :sizes header-model-size}
    :selection [nil nil]
-                                  ;; 0       1   2   3   4   5   6   7   8   9
-   :model-column->cell-prototype [democell1 nil nil nil nil nil nil nil nil nil]
+   :model-column->cell-prototype cell-prototypes
    :cell-prototype democell2
    :position-matrix m/identity-matrix
    :background (awt/color 32 16 8)
