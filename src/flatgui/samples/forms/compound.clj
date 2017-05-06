@@ -16,7 +16,7 @@
             [flatgui.widgets.panel :as panel]
             [flatgui.widgets.radiobutton :as radiobutton]
             [flatgui.widgets.checkbox :as checkbox]
-            [flatgui.samples.forms.hellowindow :as hw]
+            [flatgui.samples.forms.helloworld :as hw]
             [flatgui.samples.forms.colorchooserwin :as cc]
             [flatgui.samples.forms.orderticketwin :as ticket]
             [flatgui.samples.forms.blotterwin :as blotterwin]
