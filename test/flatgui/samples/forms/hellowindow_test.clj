@@ -8,27 +8,25 @@
 
 (ns flatgui.samples.forms.hellowindow-test
   (:require [flatgui.samples.forms.helloworld :as hw]
-            [flatgui.test :as fgt]
-            [clojure.test :as test]))
+            [flatgui.test :as fgt]))
 
 (fgt/enable-traces-for-failed-tests)
 
-(test/deftest scenario
-  (let [container (fgt/create-container #'flatgui.samples.forms.helloworld/root-panel)]
-    ;;
-    ;; Test initial state
-    ;;
-    (fgt/wait-for-property container [:main :hello :greeting] :text hw/nogreeting-text)
-    ;;
-    ;; Simulate left mouse click on [:main :hello :say-hello] checkbox
-    ;;
-    (fgt/left-click container [:main :hello :say-hello])
-    ;;
-    ;; Check that [:main :hello :greeting] :text property has changed as a result of the click on checkbox
-    ;;
-    (fgt/wait-for-property container [:main :hello :greeting] :text hw/greeting-text)
-    ;;
-    ;; Click and check once again, this time using screen coords instead of specifying a known target
-    ;;
-    (fgt/left-click container (+ hw/win-x hw/chk-x) (+ hw/win-y hw/chk-y))
-    (fgt/wait-for-property container [:main :hello :greeting] :text hw/nogreeting-text)))
+(fgt/defscenario scenario [#'flatgui.samples.forms.helloworld/root-panel]
+  ;;
+  ;; Test initial state
+  ;;
+  (fgt/wait-for-property container [:main :hello :greeting] :text hw/nogreeting-text)
+  ;;
+  ;; Simulate left mouse click on [:main :hello :say-hello] checkbox
+  ;;
+  (fgt/left-click container [:main :hello :say-hello])
+  ;;
+  ;; Check that [:main :hello :greeting] :text property has changed as a result of the click on checkbox
+  ;;
+  (fgt/wait-for-property container [:main :hello :greeting] :text hw/greeting-text)
+  ;;
+  ;; Click and check once again, this time using screen coords instead of specifying a known target
+  ;;
+  (fgt/left-click container (+ hw/win-x hw/chk-x) (+ hw/win-y hw/chk-y))
+  (fgt/wait-for-property container [:main :hello :greeting] :text hw/nogreeting-text))
