@@ -18,7 +18,7 @@
     ;;
     ;; Test initial state
     ;;
-    (fgt/check-property container [:main :hello :greeting] :text hw/nogreeting-text)
+    (fgt/wait-for-property container [:main :hello :greeting] :text hw/nogreeting-text)
     ;;
     ;; Simulate left mouse click on [:main :hello :say-hello] checkbox
     ;;
@@ -26,9 +26,9 @@
     ;;
     ;; Check that [:main :hello :greeting] :text property has changed as a result of the click on checkbox
     ;;
-    (fgt/check-property container [:main :hello :greeting] :text hw/greeting-text)
+    (fgt/wait-for-property container [:main :hello :greeting] :text hw/greeting-text)
     ;;
     ;; Click and check once again, this time using screen coords instead of specifying a known target
     ;;
     (fgt/left-click container (+ hw/win-x hw/chk-x) (+ hw/win-y hw/chk-y))
-    (fgt/check-property container [:main :hello :greeting] :text hw/nogreeting-text)))
+    (fgt/wait-for-property container [:main :hello :greeting] :text hw/nogreeting-text)))
