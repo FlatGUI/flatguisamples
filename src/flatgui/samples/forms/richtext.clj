@@ -14,8 +14,7 @@
             [flatgui.widgets.window :as window]
             [flatgui.widgets.textrich :as textrich]
             [flatgui.widgets.panel :as panel]
-            [flatgui.widgets.button :as button])
-  (:import (flatgui.core IFGEvolveConsumer)))
+            [flatgui.widgets.button :as button]))
 
 (def sample-text "If you can fill the unforgiving minute With sixty seconds’ worth of distance run, Yours is the Earth and everything that’s in it, And — which is more — you’ll be a Man, my son!")
 
@@ -33,8 +32,15 @@
 (fg/defevolverfn text-position-matrix :position-matrix (m/translation gap (+ (header-&-toolpanel-h component) gap)))
 
 (fg/defevolverfn :rendition
-  (if (and (= (get-reason) [:text->]) (get-property [:text->] :pressed))
+  (cond
+
+    (and (= (get-reason) [:text->]) (get-property [:text->] :pressed))
     (textrich/rendition-input-data-evolver component old-rendition {:type :string :data "TEST"})
+
+    (and (= (get-reason) [:image->]) (get-property [:image->] :pressed))
+    (textrich/rendition-input-data-evolver component old-rendition {:type :image :data "http://flatgui.org/resources/icon.png" :size {:w 0.5 :h 0.5}})
+
+    :else
     (textrich/rendition-evolver component)))
 
 (def window
@@ -49,6 +55,11 @@
       {:position-matrix (m/translation 0.125 0.5)
        :clip-size (m/defpoint 0.375 0.375)
        :text "T"})
+
+    (fg/defcomponent button/button :image->
+      {:position-matrix (m/translation 0.625 0.5)
+       :clip-size (m/defpoint 0.375 0.375)
+       :text "I"})
 
     (fg/defcomponent
       textrich/textrich
@@ -67,24 +78,3 @@
      :font "bold 14px sans-serif"
      :evolvers {:clip-size component/clip-size-to-host}}
     window))
-
-;;;
-;;; Tool button bindings: simulate input data
-;;;
-
-;(defn create-addtopic-consumer [jd-node]
-;  (reify IFGEvolveConsumer
-;    (getTargetPath [_this] [:mainframe :topiclist-tab :add-topic-button])
-;    (getTargetProperties [_this] [:pressed])
-;    (acceptEvolveResult [_this sessionId container _reason]
-;      (if (:pressed container)
-;        (let [topic-count (.getTopicCount jd-node)
-;              topic-name (str "topic-" topic-count) ]
-;          (do
-;            (println "[JD]" sessionId "Adding topic " topic-name)
-;            (.addTopic jd-node topic-name)))))))
-;
-;
-;(defn setup-bindings [container]
-;  (println "[JD] Initializing control binding consumers...")
-;  (.addEvolveConsumer container (addtopic/create-addtopic-consumer *jd-node*)))
