@@ -14,13 +14,19 @@
             [flatgui.widgets.window :as window]
             [flatgui.widgets.textrich :as textrich]
             [flatgui.widgets.panel :as panel]
-            [flatgui.widgets.button :as button]))
+            [flatgui.widgets.button :as button])
 
-(def sample-text "If you can fill the unforgiving minute With sixty seconds’ worth of distance run, Yours is the Earth and everything that’s in it, And — which is more — you’ll be a Man, my son!")
+  (:import (flatgui.util.resourceserver FGLocalResourceServer)))
+
+; Apostrophe 8185, DASH
+;(def sample-text "If you can fill the unforgiving minute With sixty seconds’ worth of distance run, Yours is the Earth and everything that’s in it, And — which is more — you’ll be a Man, my son!")
+(def sample-text "If you can fill the unforgiving minute With sixty seconds' worth of distance run, Yours is the Earth and everything that's in it, And - which is more - you'll be a Man, my son!")
 
 (def gap 0.125)
 
 (def tooppanel-h 0.5)
+
+(def media-server (FGLocalResourceServer.))
 
 (fg/defaccessorfn header-&-toolpanel-h [compoment]
   (+ (get-property [] :header-h) tooppanel-h))
@@ -65,6 +71,7 @@
       textrich/textrich
       :text
       {:rendition (assoc textrich/empty-rendition :glyphs (map textrich/char-glyph sample-text))
+       :media-server media-server
        :evolvers {:clip-size text-clip-size
                   :position-matrix text-position-matrix
                   :rendition rendition-evolver}})))
