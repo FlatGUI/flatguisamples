@@ -46,6 +46,9 @@
     (and (= (get-reason) [:image->]) (get-property [:image->] :pressed))
     (textrich/rendition-input-data-evolver component old-rendition {:type :image :data "http://flatgui.org/resources/icon.png" :size {:w 0.5 :h 0.5}})
 
+    (and (= (get-reason) [:video->]) (get-property [:video->] :pressed))
+    (textrich/rendition-input-data-evolver component old-rendition {:type :video :data "imagesrv/text/SampleVideo_360x240_2mb.mp4" :size {:w 0.5 :h 0.5}})
+
     :else
     (textrich/rendition-evolver component)))
 
@@ -66,6 +69,11 @@
       {:position-matrix (m/translation 0.625 0.5)
        :clip-size (m/defpoint 0.375 0.375)
        :text "I"})
+
+    (fg/defcomponent button/button :video->
+      {:position-matrix (m/translation 1.5 0.5)
+       :clip-size (m/defpoint 0.375 0.375)
+       :text "V"})
 
     (fg/defcomponent
       textrich/textrich
