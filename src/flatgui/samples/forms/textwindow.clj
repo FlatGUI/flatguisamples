@@ -48,7 +48,9 @@
       textfield/textfield
       :textfield2
       {:clip-size (m/defpoint 4.875 0.375)
-       :position-matrix (m/translation 0.125 5.0)})))
+       :position-matrix (m/translation 0.125 5.0)
+       :font "8px sans-serif"
+       :evolvers {:font nil}})))
 
 (def root-panel
   (fg/defcomponent
@@ -62,5 +64,7 @@
      ;; TODO this should be a part defroot probably
      :closed-focus-root true
      :focus-state {:mode :has-focus
-                   :focused-child nil}}
+                   :focused-child nil}
+
+     :evolvers {:font nil}}
     text-window))
