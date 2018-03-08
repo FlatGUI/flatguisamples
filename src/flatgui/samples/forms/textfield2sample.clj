@@ -38,22 +38,29 @@
 
 (fg/defevolverfn text-position-matrix :position-matrix (m/translation gap (+ (header-&-toolpanel-h component) gap)))
 
-;(fg/defevolverfn :rendition
-;  (cond
-;
-;    (and (= (get-reason) [:text->]) (get-property [:text->] :pressed))
-;    (textrich/rendition-input-data-evolver component old-rendition {:type :string :data "TEST"})
-;
-;    (and (= (get-reason) [:image->]) (get-property [:image->] :pressed))
-;    (textrich/rendition-input-data-evolver component old-rendition {:type :image
-;                                                                    :data "imagesrv/text/icon.png";"http://flatgui.org/resources/icon.png"
-;                                                                    :size {:w 0.5 :h 0.5}})
-;
-;    (and (= (get-reason) [:video->]) (get-property [:video->] :pressed))
-;    (textrich/rendition-input-data-evolver component old-rendition {:type :video :data "imagesrv/text/SampleVideo_360x240_2mb.mp4" :size {:w 1.0 :h 1.0}})
-;
-;    :else
-;    (textrich/rendition-evolver component)))
+(fg/defevolverfn :model
+  (cond
+
+    ;(and (= (get-reason) [:text->]) (get-property [:text->] :pressed))
+    ;(textrich/rendition-input-data-evolver component old-rendition {:type :string :data "TEST"})
+    ;
+    ;(and (= (get-reason) [:image->]) (get-property [:image->] :pressed))
+    ;(textrich/rendition-input-data-evolver component old-rendition {:type :image
+    ;                                                                :data "imagesrv/text/icon.png";"http://flatgui.org/resources/icon.png"
+    ;                                                                :size {:w 0.5 :h 0.5}})
+    ;
+    ;(and (= (get-reason) [:video->]) (get-property [:video->] :pressed))
+    ;(textrich/rendition-input-data-evolver component old-rendition {:type :video :data "imagesrv/text/SampleVideo_360x240_2mb.mp4" :size {:w 1.0 :h 1.0}})
+
+    (and (= (get-reason) [:<-model]) (get-property [:<-model] :pressed))
+    (do
+      (println "--------------------------------------------------------------")
+      (println (textfield2/model->str old-model))
+      (println "--------------------------------------------------------------")
+      old-model)
+
+    :else
+    (textfield2/model-evolver component)))
 
 (def window
   (fg/defcomponent
@@ -78,11 +85,17 @@
        :clip-size (m/defpoint 0.375 0.375)
        :text "V"})
 
+    (fg/defcomponent button/button :<-model
+      {:position-matrix (m/translation 2.0 0.5)
+       :clip-size (m/defpoint 0.375 0.375)
+       :text "m"})
+
     (fg/defcomponent
       textfield2/textfield
       :text
       {:media-server media-server
-       :evolvers {:clip-size text-clip-size
+       :evolvers {:model model-evolver
+                  :clip-size text-clip-size
                   :position-matrix text-position-matrix
                   }})))
 
