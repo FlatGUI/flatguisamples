@@ -55,7 +55,7 @@
     (and (= (get-reason) [:<-model]) (get-property [:<-model] :pressed))
     (do
       (println "--------------------------------------------------------------")
-      (println (textfield2/model->str old-model))
+      (println (textfield2/model->str-ext old-model))
       (println "--------------------------------------------------------------")
       old-model)
 
