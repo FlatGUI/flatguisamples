@@ -6,7 +6,7 @@
 ; the terms of this license.
 ; You must not remove this notice, or any other, from this software.
 
-(def flatgui-version "0.2.2-SNAPSHOT")
+(def flatgui-version "0.2.3-SNAPSHOT")
 
 (defproject org.flatgui/flatguisamples flatgui-version
   :description "FlatGUI Samples"
@@ -19,6 +19,8 @@
                  [org.flatgui/flatguiskins ~flatgui-version]
                  [org.flatgui/flatguiwidgets ~flatgui-version]]
   :resource-paths ["resources"]
-  :java-source-paths ["src/java"]
+  :source-paths ["src/clojure"]
+  :test-paths ["test/clojure" "test/java"]
+  :java-source-paths ["src/java" "test/java"]
   :omit-source true
   :aot :all)
